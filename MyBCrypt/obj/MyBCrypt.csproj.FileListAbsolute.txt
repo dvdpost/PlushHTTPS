@@ -1,0 +1,12 @@
+D:\DVDPost\Plush\MyBCrypt\bin\Debug\MyBCrypt.dll
+D:\DVDPost\Plush\MyBCrypt\bin\Debug\MyBCrypt.pdb
+D:\DVDPost\Plush\MyBCrypt\bin\Release\MyBCrypt.dll
+D:\DVDPost\Plush\MyBCrypt\bin\Release\MyBCrypt.pdb
+D:\DVDPost\Plush\MyBCrypt\obj\Release\ResolveAssemblyReference.cache
+D:\DVDPost\Plush\MyBCrypt\obj\Release\MyBCrypt.dll
+D:\DVDPost\Plush\MyBCrypt\obj\Release\MyBCrypt.pdb
+D:\DVDPost\Plush\BK\bin\MyBCrypt.dll
+D:\DVDPost\Plush\BK\bin\MyBCrypt.pdb
+D:\DVDPost\Plush\MyBCrypt\obj\Debug\ResolveAssemblyReference.cache
+D:\DVDPost\Plush\MyBCrypt\obj\Debug\MyBCrypt.dll
+D:\DVDPost\Plush\MyBCrypt\obj\Debug\MyBCrypt.pdb

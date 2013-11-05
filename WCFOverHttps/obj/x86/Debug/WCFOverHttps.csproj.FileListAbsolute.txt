@@ -1,0 +1,5 @@
+D:\DVDPost\ANWebServiceTest\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.exe.config
+D:\DVDPost\ANWebServiceTest\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.exe
+D:\DVDPost\ANWebServiceTest\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.pdb
+D:\DVDPost\ANWebServiceTest\WCFOverHttps\WCFOverHttps\obj\x86\Debug\WCFOverHttps.exe
+D:\DVDPost\ANWebServiceTest\WCFOverHttps\WCFOverHttps\obj\x86\Debug\WCFOverHttps.pdb

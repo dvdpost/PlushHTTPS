@@ -1,0 +1,13 @@
+﻿Installing assembly 'c:\Users\Cotzo\Documents\Visual Studio 2010\Projects\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\Users\Cotzo\Documents\Visual Studio 2010\Projects\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.exe
+   logfile = c:\Users\Cotzo\Documents\Visual Studio 2010\Projects\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.InstallLog
+Installing service WCF Over Https...
+Service WCF Over Https has been successfully installed.
+Creating EventLog source WCF Over Https in log Application...
+Committing assembly 'c:\Users\Cotzo\Documents\Visual Studio 2010\Projects\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = c:\Users\Cotzo\Documents\Visual Studio 2010\Projects\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.exe
+   logfile = c:\Users\Cotzo\Documents\Visual Studio 2010\Projects\WCFOverHttps\WCFOverHttps\bin\Debug\WCFOverHttps.InstallLog
