@@ -70,15 +70,21 @@
     <Reference Include="MySql.Data">
       <HintPath>ReferenceDll\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="PlushBuziness">
+    <Reference Include="PlushBuziness, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>ReferenceDll\PlushBuziness.dll</HintPath>
     </Reference>
     <Reference Include="PlushContract, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Plush\PlushDataContract\bin\Debug\PlushContract.dll</HintPath>
+      <HintPath>..\..\PlushWS\PlushDataContract\bin\Debug\PlushContract.dll</HintPath>
     </Reference>
-    <Reference Include="PlushData">
+    <Reference Include="PlushData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>ReferenceDll\PlushData.dll</HintPath>
+    </Reference>
+    <Reference Include="PlushLib, Version=2.0.5093.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ReferenceDll\PlushLib.dll</HintPath>
     </Reference>
     <Reference Include="PlushTools">
       <HintPath>ReferenceDll\PlushTools.dll</HintPath>

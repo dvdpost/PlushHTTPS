@@ -15,11 +15,18 @@ namespace PlushService
 
             return sql;
         }
-        public static string getIsSOVD(int imdb_id)
+        public static string getIsSVOD(int imdb_id)
         {
             string sql = "select count(*) r from svod_dates where imdb_id = " + imdb_id + " and now() between start_on and end_on ";
 
                 return sql;
+        }
+
+        public static string getIsFreeMovie(int imdb_id)
+        {
+            string sql = "select count(*) r from svod_dates where imdb_id = " + imdb_id + " and now() between start_on and end_on and kind = 'PREPAID_ALL' and now() between prepaid_start_on and prepaid_end_on ";
+
+            return sql;
         }
 
         public static string getToken(int imdb_id, int customers_id)
@@ -195,11 +202,36 @@ namespace PlushService
 
             return sql;
         }
-
+       
+        
         public static string getInsertMobileLog(int cn, string method, string parameters, int device)
         {
             string dt = DateTime.Now.ToString("dd-MM-yyyy") + " " + DateTime.Now.TimeOfDay.Hours + ":" + DateTime.Now.TimeOfDay.Minutes.ToString("D2") + ":" + DateTime.Now.TimeOfDay.Seconds.ToString("D2") + ":" + DateTime.Now.TimeOfDay.Milliseconds.ToString("D3");
             string sql = string.Format("insert into mobile_log (customers_id, method, parameters, device, created, created_system) VALUES ({0}, '{1}', '{2}', {3}, '{4}', sysdate() )", cn, method, parameters, device, dt);
+
+            return sql;
+        }
+
+        public static string getTVODAnyoneProducts()
+        {
+            string sql = "select x.products_id, " +
+"(select products_name from `plush_production`.`products_description` pd where pd.products_id = x.products_id and language_id = 1 limit 1) as products_name, " +
+"(select products_image_big  from `plush_production`.`products_description` pd where pd.products_id = x.products_id and language_id = 1 limit 1) as products_image_big " + 
+" FROM ( SELECT `products`.`products_id` FROM `plush_production`.`products`  INNER JOIN `plush_production`.`lists` ON `lists`.`product_id` = `products`.`products_id` INNER JOIN `plush_production`.`streaming_products` ON `streaming_products`.`imdb_id` = `products`.`imdb_id` AND streaming_products.available = 1 and streaming_products.country ='BE' and streaming_products.status = 'online_test_ok' and ((streaming_products.available_from <= date(now()) and streaming_products.expire_at >= date(now())) or (streaming_products.available_backcatalogue_from <= date(now()) and streaming_products.expire_backcatalogue_at >= date(now()))) WHERE (lists.en = 1) group by lists.id ORDER BY lists.id desc LIMIT 4) x";
+
+            return sql;
+        }
+
+        public static string UpdateAlias(string ALIAS, string BRAND, string CARDNO, string CN, string CVC, string ED, string NCERROR, string NCERRORCN, string NCERRORCARDNO, string NCERRORCVC, string NCERRORED, string ORDERID, string SHASIGN, string STATUS)
+        {
+            return string.Format("update plush_staging.ogone_alias_order_ws " +
+                                    " set updated_at = now(), alias_status = {0}, ncerror='{1}', ncerrorcn='{2}', ncerrorcardno={3}, ncerrorcvc='{4}', ncerrored={5} " +
+                                    " where order_id = {6} and alias = '{7}' ", STATUS , NCERROR, NCERRORCN, NCERRORCARDNO, NCERRORCVC, NCERRORED, ORDERID, ALIAS );
+        }
+
+        public static string getTVODAnyoneProductsImages(string products_ids)
+        {
+            string sql = "select cast(group_concat(products_image_big) as char(100)) as tvodproductslst products_description where products_id in (" + products_ids + ")";
 
             return sql;
         }
@@ -238,6 +270,95 @@ namespace PlushService
         public static string GetDVDCount()
         {
             return "select count( distinct products_id) r from products where products_type = 'dvd_norm' and products_status = 1 ";
+        }
+
+        public static string GetIsTVOD(int in_imdb_id)
+        {
+            return string.Format("select count(*) r from plush_production.svod_dates where imdb_id = {0} and now() between start_on and end_on", in_imdb_id);
+        }
+
+        public static string GetDirectorSlug(int vod_id)
+        {
+            string sql;
+
+            sql = string.Format("SELECT slug FROM streaming_products s JOIN products p on s.imdb_id = p.imdb_id " +
+                " left join directors d on p.products_directors_id = d.directors_id WHERE s.id = {0} ", vod_id);
+
+            return sql;
+        }
+
+        public static string GetDirectorSlugAndMovieRating(int vod_id, int? lng_id = 1)
+        {
+            string sql;
+
+            sql = string.Format("SELECT if(isnull(d.slug),'', d.slug) slug, if(isnull(d.directors_name),'', d.directors_name) directors_name, p.products_year, p.imdb_id, pd.products_name, pd.products_description, pd.products_image_big, cast((cast((p.rating_users/if(p.rating_count = 0,1,p.rating_count))*2 AS SIGNED)/2) as decimal(2,1)) rate FROM streaming_products s JOIN products p on s.imdb_id = p.imdb_id " +
+                " join products_description pd on pd.products_id = p.products_id and pd.language_id = {1} left join directors d on p.products_directors_id = d.directors_id WHERE s.id = {0}  group by 1,2 limit 1 ", vod_id, lng_id);
+
+            return sql;
+        }
+
+        //
+        public static string InsertOgoneAliasOrder(string customerName, string cardno, string cvc, string ed, string alias, string cn)
+        {
+            return string.Format("insert into plush_staging.ogone_alias_order_ws( alias, card_owner, card_number, card_cvc, card_ed, created_at, updated_at) " +
+               " values('{0}','{1}','{2}','{3}','{4}',now(),now()); select LAST_INSERT_ID() returned_number ;", alias, cn, cardno, cvc, ed);
+
+        }
+
+        //public static string UpdateOgoneAliasOrder(string order_status, int order_id, string alias, string )
+        //{
+        //    return string.Format("insert into plush_staging.ogone_alias_order_ws( alias, card_owner, card_number, card_cvc, card_ed, created_at, updated_at) " +
+        //       " values('{0}','{1}','{2}','{3}','{4}',1,null,now(),now()); select LAST_INSERT_ID() order_id ;", alias, cn, cardno, cvc, ed);
+
+        //}
+
+        public static string GetOgoneAliasOrderStatus(string alias, string orderid)
+        {
+            return string.Format("select alias_status returned_number from plush_staging.ogone_alias_order_ws where alias = '{0}' and order_id = {1} ", alias, orderid);
+
+        }
+
+        public static string CreateOgonePayment(int abo_id, PlushData.ClsCustomersData.Payment_Method method, int customers_id, string price)
+        {
+            string sql;
+            sql = "insert into plush_staging.payment ";
+            sql += " (id ,date_added, payment_method, abo_id , customers_id , amount , payment_status , batch_id ,user_modified , last_modified) ";
+            sql += " values (null,now(),'" + method + "'," + abo_id + "," + customers_id + "," + price + ", 1, null,77 " + ",now()); select LAST_INSERT_ID() returned_number ;";
+
+            return sql;
+        }
+
+        public static string getUpadatePaymentStatus(int orderid)
+        {
+            string sql;
+            sql = "update plush_staging.payment set payment_status = 2, last_modified = now() where id = " + orderid;
+
+            return sql;
+        }
+
+        public static string GetInsertHistoryAbo(int customers_id, string code_id, int product_id, string type_payment, int actionCode)
+        {
+            string sql;
+            if (code_id == "")
+                code_id = "null";
+
+            sql = "insert into plush_staging.abo(Customerid ,code_id, Action , Date , product_id, payment_method, comment) " +
+                    " values(" + customers_id + "," + code_id + "," + actionCode + ", now(), '" + product_id + "', '" + type_payment + "','' ); select LAST_INSERT_ID() returned_number ;";
+
+            return sql;
+        }
+
+        public static string getUpdateCustomerOgone(int cn, string customerName, string cardno, string ed, string card_type)
+        {
+            string sql = string.Format("update customers set customers_abo_payment_method = 1, ogone_card_type = '{0}',  ogone_card_no = '{1}', ogone_exp_date = '{2}', ogone_owner = '{3}' " +
+                            " where customers_id = {4}", card_type, cardno, ed,customerName, cn);
+
+            return sql;
+        }
+
+        public static string getInsertPaymentOgoneWS(int order_id, string responseXML)
+        {
+            return "insert into plush_staging.payment_ogone_ws( order_id, response_xml) values(" + order_id + ",'" + responseXML + "')";
         }
     }
 }

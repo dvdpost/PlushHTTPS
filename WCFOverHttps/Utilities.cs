@@ -37,10 +37,19 @@ namespace PlushService
     public class numberresult
     {
        public int r;
-    }    
+    }
+
+    public class aliasorder
+    {
+        public int returned_number;
+    }   
 
     class Utilities
     {
+        public static string BCryptPassword(string passClient)
+        {
+            return BCrypt.HashPassword(passClient, BCrypt.GenerateSalt(10)); 
+        }
 
         public static bool wrongPass(string passClient,string passServer)
         {
@@ -202,6 +211,7 @@ namespace PlushService
             }
         }
 
+
         public static bool IsVodEnabledForThisIP(string ip)
         {
             bool geoCheck = false;
@@ -241,5 +251,4 @@ namespace PlushService
         }
      
     }
- 
 }
