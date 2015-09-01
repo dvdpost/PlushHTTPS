@@ -21,9 +21,25 @@ namespace PlushHTTPS.WCFHost
         [WebGet(UriTemplate = "/getVodTokenAndLngs?imdb_id={imdb_id}&disk_id={disk_id}&season_id={season_id}&cn={cn}&device={device}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         VodTokenLengs getVodTokenAndLngs(int imdb_id, int disk_id, int season_id, int cn, int device);
 
+        [OperationContract(Action = "getBuyDRMVodTokenAuthXMLAndLngs", ReplyAction = "getBuyDRMVodTokenAuthXMLAndLngs")]
+        [WebGet(UriTemplate = "/getBuyDRMVodTokenAuthXMLAndLngs?imdb_id={imdb_id}&disk_id={disk_id}&season_id={season_id}&cn={cn}&device={device}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        VodTokenAuthXMLLengs getBuyDRMVodTokenAuthXMLAndLngs(int imdb_id, int disk_id, int season_id, int cn, int device);
+
         [OperationContract(Action = "getCustomerDetails", ReplyAction = "getCustomerDetails")]
         [WebGet(UriTemplate = "/getCustomerDetails?un={un}&pswd={pswd}&device={device}&dvcnmbr={dvcnmbr}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         CustomerDetails getCustomerDetails(string un, string pswd, int device, string dvcnmbr);
+
+        [OperationContract(Action = "getCustomersCCData", ReplyAction = "getCustomersCCData")]
+        [WebGet(UriTemplate = "/getCustomersCCData?cn={cn}&device={device}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        CustomersCCData getCustomersCCData(int cn, int device);
+
+        [OperationContract(Action = "getCustomerDetailsExtended", ReplyAction = "getCustomerDetailsExtended")]
+        [WebGet(UriTemplate = "/getCustomerDetailsExtended?un={un}&pswd={pswd}&device={device}&dvcnmbr={dvcnmbr}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        CustomerDetailsExtended getCustomerDetailsExtended(string un, string pswd, int device, string dvcnmbr);
+
+        [OperationContract(Action = "getCustomerDetailsExtendedByCN", ReplyAction = "getCustomerDetailsExtendedByCN")]
+        [WebGet(UriTemplate = "/getCustomerDetailsExtendedByCN?cn={cn}&device={device}&dvcnmbr={dvcnmbr}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        CustomerDetailsExtended getCustomerDetailsExtendedByCN(int cn, int device, string dvcnmbr);
 
         [OperationContract(Action = "setTVODCustomerSubscription", ReplyAction = "setTVODCustomerSubscription")]
         [WebGet(UriTemplate = "/setTVODCustomerSubscription?em={em}&pswd={pswd}&device={device}&dvcnmbr={dvcnmbr}&lngid={lngid}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
@@ -37,9 +53,9 @@ namespace PlushHTTPS.WCFHost
         [WebInvoke(UriTemplate = "/ExceptionAlias?ALIAS={ALIAS}&BRAND={BRAND}&CARDNO={CARDNO}&CN={CN}&CVC={CVC}&ED={ED}&NCERROR={NCERROR}&NCERRORCN={NCERRORCN}&NCERRORCARDNO={NCERRORCARDNO}&NCERRORCVC={NCERRORCVC}&NCERRORED={NCERRORED}&ORDERID={ORDERID}&SHASIGN={SHASIGN}&STATUS={STATUS}", Method="GET",  ResponseFormat = WebMessageFormat.Xml, RequestFormat = WebMessageFormat.Xml)]
         void ExceptionAlias(string ALIAS, string BRAND, string CARDNO, string CN, string CVC, string ED, string NCERROR, string NCERRORCN, string NCERRORCARDNO, string NCERRORCVC, string NCERRORED, string ORDERID, string SHASIGN, string STATUS);
 
-        [OperationContract(Action = "TVODPayAndGetVodTokenAndLngs", ReplyAction = "TVODPayAndGetVodTokenAndLngs")]
-        [WebGet(UriTemplate = "/TVODPayAndGetVodTokenAndLngs?imdb_id={imdb_id}&disk_id={disk_id}&season_id={season_id}&cn={cn}&device={device}&amount={amount}&card_type={card_type}&card_no={card_no}&card_ed={card_ed}&card_owner={card_owner}&card_cvc={card_cvc}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        VodTokenLengs TVODPayAndGetVodTokenAndLngs(int imdb_id, int disk_id, int season_id, string amount, string card_type, string card_no, string card_ed, string card_owner, string card_cvc, int cn, int device);
+        [OperationContract(Action = "TVODPayAndGetVodTokenAuthXMLAndLngs", ReplyAction = "TVODPayAndGetVodTokenAuthXMLAndLngs")]
+        [WebGet(UriTemplate = "/TVODPayAndGetVodTokenAuthXMLAndLngs?imdb_id={imdb_id}&disk_id={disk_id}&season_id={season_id}&cn={cn}&device={device}&amount={amount}&card_type={card_type}&card_no={card_no}&card_ed={card_ed}&card_owner={card_owner}&card_cvc={card_cvc}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        VodTokenAuthXMLLengs TVODPayAndGetVodTokenAuthXMLAndLngs(int imdb_id, int disk_id, int season_id, string amount, string card_type, string card_no, string card_ed, string card_owner, string card_cvc, int cn, int device);
         
     }
 }

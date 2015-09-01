@@ -13,6 +13,7 @@ using MySql.Data;
 using DbLinq.Factory;
 using System.Collections;
 using CountryLookupProj;
+using System.ServiceModel.Channels;
 
 namespace PlushService
 {
@@ -171,27 +172,42 @@ namespace PlushService
 
         public static void InsertMobileLog(int cn, string method, string parameters, int device, DVdPostMobileApIWS context)
         {
+            string sql = string.Empty; 
             try
             {
-                string sql = QueriesDB.getInsertMobileLog(cn, method, parameters, device);
+                sql = QueriesDB.getInsertMobileLog(cn, method, parameters, device);
                 context.ExecuteCommand(sql);
             }
-            catch
+            catch(Exception e)
             {
+                System.Diagnostics.EventLog hosteventLog = new System.Diagnostics.EventLog();
+                ((System.ComponentModel.ISupportInitialize)(hosteventLog)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(hosteventLog)).EndInit();
+                hosteventLog.Source = "PlushHTTPSServiceSource";
+                hosteventLog.Log = "PlushHTTPSServiceLog";
+                hosteventLog.WriteEntry("InsertMobileLog cn, method, parameters, sql: " + cn + ", " + method + ", " + parameters + ", " + sql + ", error: " + e.Message, System.Diagnostics.EventLogEntryType.Error);
+
             }
         }
 
         public static void InsertMobileLog(int cn, string method, string parameters, int device)
         {
+            string sql = string.Empty; 
             try
             {
                 string connstr = ConfigurationManager.ConnectionStrings["mobileapiws"].ConnectionString;
                 DVdPostMobileApIWS modelcontext = new DVdPostMobileApIWS(new MySqlConnection(connstr));
-                string sql = QueriesDB.getInsertMobileLog(cn, method, parameters, device);
+                sql = QueriesDB.getInsertMobileLog(cn, method, parameters, device);
                 modelcontext.ExecuteCommand(sql);
             }
-            catch
+            catch (Exception e)
             {
+                System.Diagnostics.EventLog hosteventLog = new System.Diagnostics.EventLog();
+                ((System.ComponentModel.ISupportInitialize)(hosteventLog)).BeginInit();
+                ((System.ComponentModel.ISupportInitialize)(hosteventLog)).EndInit();
+                hosteventLog.Source = "PlushHTTPSServiceSource";
+                hosteventLog.Log = "PlushHTTPSServiceLog";
+                hosteventLog.WriteEntry("InsertMobileLog cn, parameters, sql: " + cn + ", " + method + ", " + parameters + ", " + sql + ", error: " + e.Message, System.Diagnostics.EventLogEntryType.Error);
             }
         }
 
@@ -238,16 +254,41 @@ namespace PlushService
 
         public static string GetClientCoutry()
         {
+            //OperationContext context = OperationContext.Current;
+            //System.ServiceModel.Channels.MessageProperties prop = context.IncomingMessageProperties;
+            //System.ServiceModel.Channels.RemoteEndpointMessageProperty endpoint =
+            //prop[System.ServiceModel.Channels.RemoteEndpointMessageProperty.Name] as System.ServiceModel.Channels.RemoteEndpointMessageProperty;
             OperationContext context = OperationContext.Current;
-            System.ServiceModel.Channels.MessageProperties prop = context.IncomingMessageProperties;
-            System.ServiceModel.Channels.RemoteEndpointMessageProperty endpoint =
-            prop[System.ServiceModel.Channels.RemoteEndpointMessageProperty.Name] as System.ServiceModel.Channels.RemoteEndpointMessageProperty;
-            string ip = endpoint.Address;
+            MessageProperties prop = context.IncomingMessageProperties;
+
+            string ipaddress = "";
+            HttpRequestMessageProperty endpointLoadBalancer = prop[HttpRequestMessageProperty.Name] as HttpRequestMessageProperty;
+
+
+            //if (endpointLoadBalancer.Headers["X-Forwarded-For"] != null)
+            //{
+            //string headerkljucevi = string.Empty;
+            //foreach (string hdr in endpointLoadBalancer.Headers)
+            //{
+            //    headerkljucevi += hdr + ",";
+            //}
+            //Utilities.InsertMobileLog(0, "GetIP 0", headerkljucevi, 1);
+
+            ipaddress = endpointLoadBalancer.Headers["X-Forwarded-For"];
+            Utilities.InsertMobileLog(0, "GetIP X-Forwarded-For ", ipaddress, 1);
+            //}
+
+            if (string.IsNullOrEmpty(ipaddress))
+            {
+                ipaddress = ipaddress = endpointLoadBalancer.Headers["X-Real-IP"]; ;
+                Utilities.InsertMobileLog(0, "GetIP X-Real-IP ", ipaddress, 1);
+            }
+            //string ip = endpoint.Address;
 
             string filePath = ConfigurationManager.AppSettings["countryFilePath"];
 
             CountryLookup cl = new CountryLookup(filePath);
-            return  cl.lookupCountryCode(ip);            
+            return cl.lookupCountryCode(ipaddress);            
         }
      
     }

@@ -1,0 +1,9 @@
+D:\Akamai\EdgeAuth-2.0.1\c#\TokenAuth\bin\Debug\TokenAuth.dll
+D:\Akamai\EdgeAuth-2.0.1\c#\TokenAuth\bin\Debug\TokenAuth.pdb
+D:\Akamai\EdgeAuth-2.0.1\c#\TokenAuth\obj\Debug\TokenAuth.csprojResolveAssemblyReference.cache
+D:\Akamai\EdgeAuth-2.0.1\c#\TokenAuth\obj\Debug\TokenAuth.dll
+D:\Akamai\EdgeAuth-2.0.1\c#\TokenAuth\obj\Debug\TokenAuth.pdb
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TokenAuth\bin\Debug\TokenAuth.dll
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TokenAuth\bin\Debug\TokenAuth.pdb
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TokenAuth\obj\Debug\TokenAuth.dll
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TokenAuth\obj\Debug\TokenAuth.pdb

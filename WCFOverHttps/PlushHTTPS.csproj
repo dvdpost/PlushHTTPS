@@ -48,7 +48,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="buydrm.keyos.authxml.generator">
+      <HintPath>ReferenceDll\buydrm.keyos.authxml.generator.dll</HintPath>
+    </Reference>
     <Reference Include="CountryLookupProj">
       <HintPath>..\..\SmartTV\GeoIP-CSharp-1_2\bin\Debug\CountryLookupProj.dll</HintPath>
     </Reference>
@@ -82,7 +89,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ReferenceDll\PlushData.dll</HintPath>
     </Reference>
-    <Reference Include="PlushLib, Version=2.0.5093.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PlushLib, Version=2.0.5247.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ReferenceDll\PlushLib.dll</HintPath>
     </Reference>
@@ -99,6 +106,7 @@
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -155,6 +163,15 @@
       <Project>{648CC834-9554-41C3-97E7-D34ED166A13D}</Project>
       <Name>MyBCrypt</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TokenAuth\TokenAuth.csproj">
+      <Project>{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}</Project>
+      <Name>TokenAuth</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PlushHttpsService.resx">
+      <DependentUpon>PlushHttpsService.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

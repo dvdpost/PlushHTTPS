@@ -10,5 +10,7 @@ namespace MobileDevicesService
         public int imdb_id;
         public string filename;
         public decimal ppv_price;
+        public string quality;
+        public string akamai_folder;
     }
 }
