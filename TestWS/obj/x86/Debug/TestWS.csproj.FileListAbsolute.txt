@@ -1,0 +1,4 @@
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TestWS\obj\x86\Debug\TestWS.csprojResolveAssemblyReference.cache
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TestWS\obj\x86\Debug\TestWS.Form1.resources
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TestWS\obj\x86\Debug\TestWS.Properties.Resources.resources
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\TestWS\obj\x86\Debug\TestWS.csproj.GenerateResource.Cache

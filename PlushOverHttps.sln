@@ -7,6 +7,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PlushHttpsInstaler", "Https
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBCrypt", "MyBCrypt\MyBCrypt.csproj", "{648CC834-9554-41C3-97E7-D34ED166A13D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenAuth", "TokenAuth\TokenAuth.csproj", "{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{648CC834-9554-41C3-97E7-D34ED166A13D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{648CC834-9554-41C3-97E7-D34ED166A13D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{648CC834-9554-41C3-97E7-D34ED166A13D}.Release|x86.ActiveCfg = Release|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AB2A52AA-5C40-4C58-AA15-9F1C46324F07}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

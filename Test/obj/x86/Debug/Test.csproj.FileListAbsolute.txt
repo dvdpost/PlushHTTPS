@@ -1,0 +1,8 @@
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\bin\Debug\Test.exe
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\bin\Debug\Test.pdb
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\obj\x86\Debug\Test.csprojResolveAssemblyReference.cache
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\obj\x86\Debug\Test.Properties.Resources.resources
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\obj\x86\Debug\Test.csproj.GenerateResource.Cache
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\obj\x86\Debug\Test.exe
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\obj\x86\Debug\Test.pdb
+D:\DVDPost\ANWebServiceTest\PlushOverHttps\Test\obj\x86\Debug\test.Form1.resources

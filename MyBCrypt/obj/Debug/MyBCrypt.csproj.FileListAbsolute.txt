@@ -1,5 +1,4 @@
 D:\DVDPost\ANWebServiceTest\PlushOverHttps\BK\bin\MyBCrypt.dll
 D:\DVDPost\ANWebServiceTest\PlushOverHttps\BK\bin\MyBCrypt.pdb
-D:\DVDPost\ANWebServiceTest\PlushOverHttps\MyBCrypt\obj\Debug\ResolveAssemblyReference.cache
 D:\DVDPost\ANWebServiceTest\PlushOverHttps\MyBCrypt\obj\Debug\MyBCrypt.dll
 D:\DVDPost\ANWebServiceTest\PlushOverHttps\MyBCrypt\obj\Debug\MyBCrypt.pdb
