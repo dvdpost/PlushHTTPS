@@ -2234,6 +2234,19 @@ namespace PlushHTTPS.WCFHost
             contextMobileApiWs.ObjectTrackingEnabled = false;
             contextMobileApiWs.QueryCacheEnabled = true;
 
+            IEnumerable<VODChannel> vodch = contextMobileApiWs.ExecuteQuery<VODChannel>("CALL spmovie_vod_products({0},{1},{2},{3})", imdb_id, disk_id, season_id, Utilities.GetClientCoutry());
+            Utilities.InsertMobileLog(cn, "TVODPayAndGetVodTokenAuthXMLAndLngs 0.1 ", imdb_id.ToString() + ", " + disk_id.ToString() + ", " + season_id.ToString() + vodch.ToList()[0].a, device, contextMobileApiWs);
+
+            if (vodch == null || vodch.Count() == 0)
+            {
+                vtlReturn.a = "";
+                vtlReturn.t = "-7";
+                vtlReturn.authxml = "";
+
+                return vtlReturn;
+            }
+
+
             string sqlISSVOD = QueriesDB.getIsSVOD(imdb_id);
             string sqlIsFreeMovie = QueriesDB.getIsFreeMovie(imdb_id);
             IEnumerable<numberresult> svodcount = contextBeProd.ExecuteQuery<numberresult>(sqlISSVOD, null);
